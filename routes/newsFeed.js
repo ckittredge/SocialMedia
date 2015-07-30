@@ -25,7 +25,6 @@ router.get('/items/:user_id', function(req, res, next) {
             }
             db.close();   
         });
-        
       }
     });
 });

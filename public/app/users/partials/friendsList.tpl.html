@@ -1,0 +1,12 @@
+<div>
+    <input ng-model="friendsList.filterText" 
+           class="form-control"
+           placeholder="Search within your friends..."/>
+    <div class="clearfix"></div>
+    <br>
+    <div ng-repeat="item in friendsList.items | filter: friendsList.filterText track by $index">
+        <user-info-card ng-model="item"></user-info-card>
+        <div class="clearfix"></div>
+        <br>
+    </div>
+</div>

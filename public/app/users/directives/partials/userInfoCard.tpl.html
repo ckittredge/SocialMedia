@@ -1,0 +1,16 @@
+<div class="news-feed-item">
+    <div class="row">
+        <div class="col-lg-4">
+            <h3>
+                <img ng-src="{{userInfoCard.details.imageUrl}}" width="75" height="75">
+                {{userInfoCard.details.firstName}} {{userInfoCard.details.lastName}}
+            </h3>
+        </div>
+        <div class="col-lg-8">
+            <br>
+            <p><b>Age: </b>{{userInfoCard.details.age}}</p>
+            <br>
+            <p><b>Location: </b>{{userInfoCard.details.location.city}}, {{userInfoCard.details.location.state}}</p>
+        </div>
+    </div>
+</div>

@@ -4,16 +4,21 @@
         <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
         <!--    Scripts    -->
+        <!--    Vendor    -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/javascripts/underscore-min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
         <script type="text/javascript" src="/javascripts/angular-ui-router.min.js"></script>
+        <!--    Modules    -->
         <script type="text/javascript" src="/app/util/underscore.mod.js"></script>
         <script type="text/javascript" src="/app/newsFeed/newsFeed.mod.js"></script>
         <script type="text/javascript" src="/app/sideMenu/sideMenu.mod.js"></script>
         <script type="text/javascript" src="/app/widgets/widgets.mod.js"></script>
+        <script type="text/javascript" src="/app/users/appUsers.mod.js"></script>
+        <!--   Main     -->
         <script type="text/javascript" src="/app/main.js"></script>
+        <!--    News Feed    -->
         <script type="text/javascript" src="/app/newsFeed/types/newsFeedItemTypes.js"></script>
         <script type="text/javascript" src="/app/newsFeed/dataServices/newsFeedDataService.js"></script>
         <script type="text/javascript" src="/app/newsFeed/controllers/newsFeed.ctrl.js"></script>
@@ -22,60 +27,22 @@
         <script type="text/javascript" src="/app/sideMenu/controllers/sideMenu.ctrl.js"></script>
         <script type="text/javascript" src="/app/widgets/directives/userStatusWidget.dr.js"></script>
         <script type="text/javascript" src="/app/widgets/directives/controllers/userStatusWidget.ctrl.js"></script>
-        <script>
-            function statusChangeCallback(response) {
-            console.log('statusChangeCallback');
-            console.log(response);
-            if (response.status === 'connected') {
-                window.userLoggedIn = true;
-            } else if (response.status === 'not_authorized') {
-              document.getElementById('status').innerHTML = 'Please log ' +
-                'into this app.';
-                window.userLoggedIn = false;
-            } else {
-              document.getElementById('status').innerHTML = 'Please log ' +
-                'into Facebook.';
-                window.userLoggedIn = false;
-            }
-          }
-
-          // This function is called when someone finishes with the Login
-          // Button.  See the onlogin handler attached to it in the sample
-          // code below.
-          function checkLoginState() {
-            FB.getLoginStatus(function(response) {
-              statusChangeCallback(response);
-            });
-          }
-          window.fbAsyncInit = function() {
-            FB.init({
-              appId      : '1012574255454195',
-              xfbml      : true,
-              version    : 'v2.4'
-            });
-          };
-
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/en_US/sdk.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
-        </script>
+        <!--    Users     -->
+        <script type="text/javascript" src="/app/users/controllers/friendsList.ctrl.js"></script>
+        <script type="text/javascript" src="/app/users/dataServices/appUserDataService.js"></script>
+        <script type="text/javascript" src="/app/users/directives/userInfoCard.dr.js"></script>
+        <script type="text/javascript" src="/app/users/directives/controllers/userInfoCard.ctrl.js"></script>
     </head>
     <body ng-app="SocialMediaApp">
         <div class="container" ng-controller="MainController">
+            <h4 class="text-right">
+                {{main.currentUser.firstName}} {{main.currentUser.lastName}}
+                <img ng-src="{{main.currentUser.imageUrl}}" width="25" height="25">
+            </h3>
             <h1 class="text-center"><span><i class="glyphicon glyphicon-user"></i></span> The Social Network</h1>
             <hr/>
-            <div class="text-center">
-                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-                <div id="status"></div>
-            </div>
-            <div ng-if="main.userLoggedIn()">
-                <div class="col-lg-2 col-sm-3" ui-view="SideMenu"></div>
-                <div class="col-lg-10 col-sm-9 main-view" ui-view="MainView"></div>
-            </div>
+            <div class="col-lg-2 col-sm-3" ui-view="SideMenu"></div>
+            <div class="col-lg-10 col-sm-9 main-view" ui-view="MainView"></div>
         </div>
     </body>
 </html>

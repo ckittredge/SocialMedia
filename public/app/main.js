@@ -1,25 +1,13 @@
-var app = angular.module('SocialMediaApp', ['ui.router', 'underscore', 'NewsFeed', 'SideMenu', 'Widgets']);
+var app = angular.module('SocialMediaApp', 
+     ['ui.router', 'underscore', 'NewsFeed', 'SideMenu', 'Widgets', 'AppUsers']);
 
 app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {
   
-  $urlRouterProvider.otherwise("/newsFeed");
+  $urlRouterProvider.otherwise("/");
   
   $stateProvider
-    .state('Login', {
-      url: "/login",
-      views:{
-        SideMenu: {
-            templateUrl: "app/sideMenu/partials/sideMenu.tpl.html",
-            controller: "SideMenuController"     
-        },
-        MainView: {
-            templateUrl: "app/newsFeed/partials/newsFeed.tpl.html",
-            controller: "NewsFeedController"     
-        }
-      }
-    })
     .state('NewsFeed', {
-      url: "/newsFeed",
+      url: "/",
       views:{
         SideMenu: {
             templateUrl: "app/sideMenu/partials/sideMenu.tpl.html",
@@ -39,22 +27,23 @@ app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {
             controller: "SideMenuController"     
         },
         MainView: {
-            templateUrl: "app/newsFeed/partials/newsFeed.tpl.html",
-            controller: "NewsFeedController"     
+            templateUrl: "app/users/partials/friendsList.tpl.html",
+            controller: "FriendsListController"     
         }
       }
     });
 });
 
-app.controller('MainController', ['$scope', '$rootScope', '$state', 
-    function MainController($scope, $rootScope, $state){
+app.controller('MainController', ['$scope', '$window', '$state', 'AppUserDataService', 
+    function MainController($scope, $window, $state, AppUserDataService){
     console.log('in the main controller');
         
         $scope.main = {};
         
-        $scope.main.userLoggedIn = function(){
-            return window.userLoggedIn;
-        }
+        AppUserDataService.getCurrentUser().then(function getCurrentUser(result){
+            $scope.main.currentUser = $window.currentUser = result.data.data;
+            $scope.$broadcast('currentUserSet', result.data.data);
+        })
         
         function init(){
             $state.go('NewsFeed');

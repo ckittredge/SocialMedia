@@ -12,7 +12,7 @@ angular.module('Widgets').controller('UserStatusWidgetController',
       }
       
       $scope.userStatusWidget.submit = function submitStatus(){
-            console.log('submit user status');
+            console.log('submit user status from user: ' + window.currentUser._id);
       }
   
   }]);
