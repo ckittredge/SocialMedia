@@ -6,7 +6,7 @@
             <span><i class="glyphicon glyphicon-refresh"></i></span></button>
     </div>
     <br>
-    <div ng-repeat="item in newsFeed.items | orderBy:'createDT' track by $index">
+    <div ng-repeat="item in newsFeed.items | orderBy:'createDT':true track by $index">
         <news-feed-item 
             class="col-lg-12"
             ng-model="item">

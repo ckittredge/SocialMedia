@@ -10,7 +10,7 @@ angular.module('SideMenu').controller('SideMenuController',
                     selected: false
                 },
                 {
-                    name: 'Friends',
+                    name: 'Friends List',
                     sref: 'FriendsList',
                     selected: false
                 }

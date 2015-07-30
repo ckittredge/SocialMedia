@@ -28,4 +28,5 @@ a {
 .news-feed-item {
   border: #a9a9a9 solid 1px;
   padding: 10px;
+  box-shadow: 3px 3px 3px #d3d3d3;
 }

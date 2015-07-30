@@ -4,7 +4,7 @@ describe('Unit: NewsFeedController', function NewsFeedControllerTests() {
 
   var ctrl, scope, mockNewsFeedDataService;
 
-  var resultDefault = { success: true, data: [1,2,3]};
+  var resultDefault = { success: true, data: { data: [1,2,3] }};
   var result = resultDefault;
     
   beforeEach(inject(function($controller, $rootScope) {
@@ -25,11 +25,13 @@ describe('Unit: NewsFeedController', function NewsFeedControllerTests() {
     });
   }));
 
-  it('should create $scope.greeting when calling sayHello', 
+  it('should append to items array with subsequent getNewsFeedItems is called', 
     function() {
-      result = { success: true, data: [1,2,3,4,5] };
+      result = { success: true, data: { data: [4,5,6,7,8] } };
+      expect(scope.newsFeed.items.length).toEqual(3);
       scope.newsFeed.getNewsFeedItems();
-      expect(scope.newsFeed.test.length).toEqual(5);
+      expect(scope.newsFeed.items.length).toEqual(8);
       result = resultDefault;
   });
+    
 });

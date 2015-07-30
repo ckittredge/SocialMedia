@@ -29,15 +29,19 @@ router.get('/items/:user_id', function(req, res, next) {
     });
 });
 
-router.post('item/:user_id', function(req, res, next) {
+router.post('/item', function(req, res, next) {
+    console.log(req.body);
     MongoClient.connect(url, function (err, db) {
       if (err) {
         console.log('Unable to connect to the mongoDB server. Error:', err);
       } else {
         console.log('Connection established to', url);
-
-        // do some work here with the database.
-        db.close();
+          db.collection("news_feed_items").insert(req.body, function(err, result){
+              if(err){
+                res.status(500).send('Status could not be updated');
+              }
+              db.close();
+          });
       }
     });
 });

@@ -4,6 +4,7 @@
             <img ng-src="{{newsFeedItem.details.user.imageUrl}}" width="75" height="75">
             {{newsFeedItem.details.user.firstName}} {{newsFeedItem.details.user.lastName}}
         </h3>
+        <p class="small"><small>{{newsFeedItem.details.createDT | date:'MM/dd/yyyy h:mm a'}}</small></p>
     </div>
     <div class="col-lg-8">
         <br/>

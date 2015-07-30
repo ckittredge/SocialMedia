@@ -10,7 +10,7 @@ angular.module('NewsFeed').controller('NewsFeedController',
         $scope.newsFeed.getNewsFeedItems = function(){
             newsFeedDataService.getNewsFeedItems().then(function(result){
                 if(result.success){
-                    $scope.newsFeed.items.push.apply($scope.newsFeed.items, result.response.data.data);
+                    $scope.newsFeed.items.push.apply($scope.newsFeed.items, result.data.data);
                 }
             });
         };
@@ -20,4 +20,8 @@ angular.module('NewsFeed').controller('NewsFeedController',
         };
         
         init();
+        
+        $scope.$on('newStatusUpdatePosted', function statusUpdatePostedEvent(){
+            $scope.newsFeed.getNewsFeedItems();
+        });
 }]);

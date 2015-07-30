@@ -4,7 +4,7 @@
            placeholder="Search within your friends..."/>
     <div class="clearfix"></div>
     <br>
-    <div ng-repeat="item in friendsList.items | filter: friendsList.filterText track by $index">
+    <div ng-repeat="item in friendsList.items | filter: friendsList.filterText | orderBy:'firstName' track by $index">
         <user-info-card ng-model="item"></user-info-card>
         <div class="clearfix"></div>
         <br>
