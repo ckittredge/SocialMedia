@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <!--  Stylesheets   -->
+        <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+        <!--    Scripts    -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/javascripts/underscore-min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+        <script type="text/javascript" src="/javascripts/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="/app/newsFeed/newsFeed.mod.js"></script>
+        <script type="text/javascript" src="/app/sideMenu/sideMenu.mod.js"></script>
+        <script type="text/javascript" src="/app/widgets/widgets.mod.js"></script>
+        <script type="text/javascript" src="/app/main.js"></script>
+        <script type="text/javascript" src="/app/newsFeed/types/newsFeedItemTypes.js"></script>
+        <script type="text/javascript" src="/app/newsFeed/controllers/newsFeed.ctrl.js"></script>
+        <script type="text/javascript" src="/app/newsFeed/directives/newsFeedItem.dr.js"></script>
+        <script type="text/javascript" src="/app/newsFeed/directives/controllers/newsFeedItem.ctrl.js"></script>
+        <script type="text/javascript" src="/app/sideMenu/controllers/sideMenu.ctrl.js"></script>
+        <script type="text/javascript" src="/app/widgets/directives/userStatusWidget.dr.js"></script>
+        <script type="text/javascript" src="/app/widgets/directives/controllers/userStatusWidget.ctrl.js"></script>
+    </head>
+    <body ng-app="SocialMediaApp">
+        <div class="container" ng-controller="MainController">
+            <div class="col-lg-2" ui-view="SideMenu"></div>
+            <div class="col-lg-10" ui-view="MainView"></div>
+        </div>
+    </body>
+</html>
