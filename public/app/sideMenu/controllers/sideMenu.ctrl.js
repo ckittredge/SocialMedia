@@ -14,7 +14,12 @@ angular.module('SideMenu').controller('SideMenuController',
                     sref: 'NewsFeed',
                     selected: false
                 }
-            ]
+            ],
+            expanded: true
         };
+       
+       $scope.sideMenu.toggleExpanded = function(){
+            $scope.sideMenu.expanded = !$scope.sideMenu.expanded;
+       }
        
    }]);
