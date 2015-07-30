@@ -1,1 +1,1 @@
-angular.module('SideMenu', []);
+angular.module('SideMenu', ['underscore']);

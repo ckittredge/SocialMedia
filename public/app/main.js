@@ -1,8 +1,3 @@
-var underscore = angular.module('underscore', []);
-underscore.factory('_', ['$window', function UnderscoreFactory() {
-  return $window._;
-}]);
-
 var app = angular.module('SocialMediaApp', ['ui.router', 'underscore', 'NewsFeed', 'SideMenu', 'Widgets']);
 
 app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {

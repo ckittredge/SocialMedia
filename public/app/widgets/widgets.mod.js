@@ -1,1 +1,1 @@
-angular.module('Widgets', []);
+angular.module('Widgets', ['underscore']);

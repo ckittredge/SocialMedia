@@ -1,13 +1,18 @@
 angular.module('NewsFeed').controller('NewsFeedController', 
-    ['$scope', 'NEWS_FEED_TYPES',
-    function newsFeedController($scope, NEWS_FEED_TYPES){
+    ['$scope', 'newsFeedDataService', 'NEWS_FEED_TYPES',
+    function newsFeedController($scope, newsFeedDataService, NEWS_FEED_TYPES){
         console.log('In the news feed controller');
         
         $scope.newsFeed = {
             items: []
         }
 
-        function getNewsFeedItems(){
+        $scope.newsFeed.getNewsFeedItems = function(){
+            newsFeedDataService.getNewsFeedItems().then(function(result){
+                if(result.success){
+                    $scope.newsFeed.test = result.data;
+                }
+            });
             $scope.newsFeed.items = [
                 {
                     type: NEWS_FEED_TYPES.TEXT,
@@ -22,8 +27,8 @@ angular.module('NewsFeed').controller('NewsFeedController',
                 {
                     type: NEWS_FEED_TYPES.IMAGE,
                     user: {
-                        firstName: 'Joe',
-                        lastName: 'Black',
+                        firstName: 'Chris',
+                        lastName: 'Rock',
                         imageUrl: 'http://d1oi7t5trwfj5d.cloudfront.net/b8/fb/e79307884bf98515e3317b78e1f1/chris-rock.jpg'
                     },
                     text: 'I hate when people post about food!',
@@ -42,8 +47,8 @@ angular.module('NewsFeed').controller('NewsFeedController',
                 {
                     type: NEWS_FEED_TYPES.IMAGE,
                     user: {
-                        firstName: 'Joe',
-                        lastName: 'Black',
+                        firstName: 'Chris',
+                        lastName: 'Rock',
                         imageUrl: 'http://d1oi7t5trwfj5d.cloudfront.net/b8/fb/e79307884bf98515e3317b78e1f1/chris-rock.jpg'
                     },
                     text: 'I hate when people post about food!',
@@ -62,8 +67,8 @@ angular.module('NewsFeed').controller('NewsFeedController',
                 {
                     type: NEWS_FEED_TYPES.IMAGE,
                     user: {
-                        firstName: 'Joe',
-                        lastName: 'Black',
+                        firstName: 'Chris',
+                        lastName: 'Rock',
                         imageUrl: 'http://d1oi7t5trwfj5d.cloudfront.net/b8/fb/e79307884bf98515e3317b78e1f1/chris-rock.jpg'
                     },
                     text: 'I hate when people post about food!',
@@ -82,8 +87,8 @@ angular.module('NewsFeed').controller('NewsFeedController',
                 {
                     type: NEWS_FEED_TYPES.IMAGE,
                     user: {
-                        firstName: 'Joe',
-                        lastName: 'Black',
+                        firstName: 'Chris',
+                        lastName: 'Rock',
                         imageUrl: 'http://d1oi7t5trwfj5d.cloudfront.net/b8/fb/e79307884bf98515e3317b78e1f1/chris-rock.jpg'
                     },
                     text: 'I hate when people post about food!',
@@ -102,8 +107,8 @@ angular.module('NewsFeed').controller('NewsFeedController',
                 {
                     type: NEWS_FEED_TYPES.IMAGE,
                     user: {
-                        firstName: 'Joe',
-                        lastName: 'Black',
+                        firstName: 'Chris',
+                        lastName: 'Rock',
                         imageUrl: 'http://d1oi7t5trwfj5d.cloudfront.net/b8/fb/e79307884bf98515e3317b78e1f1/chris-rock.jpg'
                     },
                     text: 'I hate when people post about food!',
@@ -113,7 +118,7 @@ angular.module('NewsFeed').controller('NewsFeedController',
         };
         
         function init(){
-            getNewsFeedItems();
+            $scope.newsFeed.getNewsFeedItems();
         };
         
         init();
