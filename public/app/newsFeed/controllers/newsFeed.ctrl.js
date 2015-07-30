@@ -10,7 +10,12 @@ angular.module('NewsFeed').controller('NewsFeedController',
         $scope.newsFeed.getNewsFeedItems = function(){
             newsFeedDataService.getNewsFeedItems().then(function(result){
                 if(result.success){
-                    $scope.newsFeed.items = result.response.data.data;
+                    _.each(result.response.data.data, function appendNewItems(item){
+                        var existing = _.findWhere($scope.newsFeed.items, { id: item.id });
+                        if(existing == null){
+                            $scope.newsFeed.items.push(item);
+                        }
+                    });
                 }
             });
         };

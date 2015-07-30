@@ -9,6 +9,7 @@ router.use(function(req, res, next) {
 router.get('/items/:user_id', function(req, res, next) {
   res.json({data: [
                 {
+                    id: 1,
                     type: 0,
                     user: {
                         firstName: 'Chris',
@@ -19,6 +20,7 @@ router.get('/items/:user_id', function(req, res, next) {
                     createDT: new Date('07/28/2014')
                 },
                 {
+                    id: 2,
                     type: 1,
                     user: {
                         firstName: 'Chris',
