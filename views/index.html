@@ -23,8 +23,10 @@
     </head>
     <body ng-app="SocialMediaApp">
         <div class="container" ng-controller="MainController">
-            <div class="col-lg-2" ui-view="SideMenu"></div>
-            <div class="col-lg-10" ui-view="MainView"></div>
+            <h1 class="text-center">Myspace 2.0</h1>
+            <hr/>
+            <div class="col-lg-2 col-sm-3" ui-view="SideMenu"></div>
+            <div class="col-lg-10 col-sm-9 main-view" ui-view="MainView"></div>
         </div>
     </body>
 </html>

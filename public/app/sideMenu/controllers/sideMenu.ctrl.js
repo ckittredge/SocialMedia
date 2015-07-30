@@ -5,21 +5,22 @@ angular.module('SideMenu').controller('SideMenuController',
         $scope.sideMenu = {
             items: [
                 {
-                    name: 'Profile',
-                    sref: 'Profile',
-                    selected: false
-                },
-                {
                     name: 'News Feed',
                     sref: 'NewsFeed',
                     selected: false
+                },
+                {
+                    name: 'Friends',
+                    sref: 'FriendsList',
+                    selected: false
                 }
-            ],
-            expanded: true
+            ]
         };
        
-       $scope.sideMenu.toggleExpanded = function(){
-            $scope.sideMenu.expanded = !$scope.sideMenu.expanded;
-       }
+       $scope.$on('$stateChangeSuccess', function StateChangeStart(scope, state){
+          _.each($scope.sideMenu.items, function SideMenuCallback(item){
+                item.selected = item.sref === state.name;
+          });
+       });
        
    }]);

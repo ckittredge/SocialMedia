@@ -1,10 +1,9 @@
 <div class="side-menu">
-    
-    <div class="clearfix"></div>
-    <hr/>
-    <ul>
-        <li ng-repeat="item in sideMenu.items track by $index">
-            <a sref="{{item.sref}}">{{item.name}}</a>
+    <ul class="btn-toolbar">
+        <li class="btn"
+            ui-sref="{{item.sref}}"
+            ng-class="{'btn-default': !item.selected, 'btn-primary': item.selected}"
+            ng-repeat="item in sideMenu.items track by $index">{{item.name}}
         </li>
     </ul>
 </div>

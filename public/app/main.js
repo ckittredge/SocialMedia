@@ -23,9 +23,28 @@ app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('FriendsList', {
+      url: "/Friends",
+      views:{
+        SideMenu: {
+            templateUrl: "app/sideMenu/partials/sideMenu.tpl.html",
+            controller: "SideMenuController"     
+        },
+        MainView: {
+            templateUrl: "app/newsFeed/partials/newsFeed.tpl.html",
+            controller: "NewsFeedController"     
+        }
+      }
+    });
 });
 
-app.controller('MainController', ['$scope', 
-    function MainController($scope){
+app.controller('MainController', ['$scope', '$rootScope', '$state', 
+    function MainController($scope, $rootScope, $state){
     console.log('in the main controller');
+        
+        function init(){
+            $state.go('NewsFeed');
+        }
+        
+        init();
 }]);
