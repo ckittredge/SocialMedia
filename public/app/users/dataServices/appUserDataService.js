@@ -1,4 +1,4 @@
-angular.module('AppUsers').service('AppUserDataService', 
+angular.module('AppUsers').service('appUserDataService', 
   ['$http', function($http){
       
       this.getCurrentUser = function(){

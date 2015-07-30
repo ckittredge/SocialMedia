@@ -1,6 +1,6 @@
 angular.module('Widgets').controller('UserStatusWidgetController',
- ['$scope', '$window', 'newsFeedDataService', 'NEWS_FEED_TYPES',
-  function UserStatusWidgetController($scope,$window, newsFeedDataService, NEWS_FEED_TYPES){
+ ['$scope', '$rootScope', '$window', 'newsFeedDataService', 'NEWS_FEED_TYPES',
+  function UserStatusWidgetController($scope, $rootScope, $window, newsFeedDataService, NEWS_FEED_TYPES){
     console.log('In the user status widget controller');
       
       /*---------- Scope Setup ----------*/
@@ -15,7 +15,6 @@ angular.module('Widgets').controller('UserStatusWidgetController',
       /*---------- Form Setup ----------*/
       
       $scope.userStatusWidget.setForm = function(form){
-          debugger;
             $scope.userStatusWidget.form = form;
       }
       
@@ -36,9 +35,10 @@ angular.module('Widgets').controller('UserStatusWidgetController',
                 createDT: new Date()
           }
           newsFeedDataService.postStatusUpdate(status).then(function(response){
-                debugger;
+              if(response.success){
                 $scope.userStatusWidget.clear();
-                $scope.$emit('newStatusUpdatePosted');
+                $scope.$broadcast('newStatusUpdatePosted');
+              }
           });
       }
       

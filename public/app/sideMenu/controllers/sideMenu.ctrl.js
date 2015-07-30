@@ -1,7 +1,9 @@
 angular.module('SideMenu').controller('SideMenuController',
   ['$scope',
    function SideMenuController($scope){
-        console.log('In the side menu controller');
+        
+        /*---------- Scope Setup ----------*/
+       
         $scope.sideMenu = {
             items: [
                 {
@@ -17,10 +19,17 @@ angular.module('SideMenu').controller('SideMenuController',
             ]
         };
        
+       /*---------- END Scope Setup ----------*/
+       
+       
+       /*---------- Event Listeners ----------*/
+       
        $scope.$on('$stateChangeSuccess', function StateChangeStart(scope, state){
           _.each($scope.sideMenu.items, function SideMenuCallback(item){
                 item.selected = item.sref === state.name;
           });
        });
+       
+       /*---------- END Event Listeners ----------*/
        
    }]);

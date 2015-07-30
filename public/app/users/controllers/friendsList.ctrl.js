@@ -1,21 +1,37 @@
 angular.module('AppUsers').controller('FriendsListController', 
-  ['$scope', '$window', 'AppUserDataService',
-   function friendsListController($scope,$window, AppUserDataService){
-       console.log("In friend's list controller");
+  ['$scope', '$window', 'appUserDataService',
+   function friendsListController($scope,$window, appUserDataService){
+       
+       /*---------- Scope Setup ----------*/
        
        $scope.friendsList = {};
        
+       /*---------- Scope Setup ----------*/
+       
+       
+       /*---------- Data Service Calls ----------*/
+       
        $scope.friendsList.populateFriends = function(){
-            AppUserDataService.getFriendsList($window.currentUser._id).then(function(result){
+            appUserDataService.getFriendsList($window.currentUser._id).then(function(result){
                 $scope.friendsList.items = result.data.data;
             });
-       }
+       };
+       
+       /*---------- END Data Service Calls ----------*/
+       
+       
+       /*---------- Init ----------*/
        
        function init(){
            $scope.friendsList.populateFriends();
        }
        
        if($window.currentUser) init();
+       
+       /*---------- Init ----------*/
+       
+       
+       /*---------- Event Listeners ----------*/
        
        $scope.$on('currentUserSet', function userSet(scope, currentUser){
            if(currentUser != null){
@@ -25,5 +41,7 @@ angular.module('AppUsers').controller('FriendsListController',
                 throw 'Current user null';
            }
        });
+       
+       /*---------- END Event Listeners ----------*/
    }
   ]);

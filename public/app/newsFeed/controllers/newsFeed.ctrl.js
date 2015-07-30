@@ -3,9 +3,16 @@ angular.module('NewsFeed').controller('NewsFeedController',
     function newsFeedController($scope, newsFeedDataService, NEWS_FEED_TYPES){
         console.log('In the news feed controller');
         
+        /*---------- Scope Setup ----------*/
+        
         $scope.newsFeed = {
             items: []
         }
+        
+        /*---------- END Scope Setup ----------*/
+        
+        
+        /*---------- Data Service Calls ----------*/
 
         $scope.newsFeed.getNewsFeedItems = function(){
             newsFeedDataService.getNewsFeedItems().then(function(result){
@@ -15,13 +22,25 @@ angular.module('NewsFeed').controller('NewsFeedController',
             });
         };
         
+        /*---------- END Data Service Calls ----------*/
+        
+        
+        /*---------- Init ----------*/
+        
         function init(){
             $scope.newsFeed.getNewsFeedItems();
         };
         
         init();
         
+        /*---------- END Init ----------*/
+        
+        
+        /*---------- Event Listeners ----------*/
+        
         $scope.$on('newStatusUpdatePosted', function statusUpdatePostedEvent(){
             $scope.newsFeed.getNewsFeedItems();
         });
+        
+        /*---------- END Event Listeners ----------*/
 }]);

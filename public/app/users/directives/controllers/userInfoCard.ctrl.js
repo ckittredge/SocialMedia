@@ -1,7 +1,12 @@
 angular.module('AppUsers').controller('UserInfoCardController', 
   ['$scope', 
    function userInfoCardController($scope){
-       console.log('In user info card controller');
+       
+       /*---------- Scope Setup ----------*/
+       
        $scope.userInfoCard = $scope.userInfoCard || {};
+       
+       /*---------- END Scope Setup ----------*/
+       
    }
 ]);

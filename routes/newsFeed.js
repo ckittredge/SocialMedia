@@ -39,6 +39,8 @@ router.post('/item', function(req, res, next) {
           db.collection("news_feed_items").insert(req.body, function(err, result){
               if(err){
                 res.status(500).send('Status could not be updated');
+              } else{
+                res.status(200).send('Status saved successfully!');
               }
               db.close();
           });

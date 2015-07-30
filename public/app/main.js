@@ -3,6 +3,8 @@ var app = angular.module('SocialMediaApp',
 
 app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {
   
+  /*---------- Routing Config ----------*/
+    
   $urlRouterProvider.otherwise("/");
   
   $stateProvider
@@ -32,22 +34,39 @@ app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {
         }
       }
     });
+    
+    /*---------- END Routing Config ----------*/
+    
 });
 
-app.controller('MainController', ['$scope', '$window', '$state', 'AppUserDataService', 
-    function MainController($scope, $window, $state, AppUserDataService){
+app.controller('MainController', ['$scope', '$window', '$state', 'appUserDataService', 
+    function MainController($scope, $window, $state, appUserDataService){
     console.log('in the main controller');
+        
+        /*---------- Scope Setup ----------*/
         
         $scope.main = {};
         
-        AppUserDataService.getCurrentUser().then(function getCurrentUser(result){
+        /*---------- END Scope Setup ----------*/
+        
+        
+        /*---------- Data Service Calls ----------*/
+        
+        appUserDataService.getCurrentUser().then(function getCurrentUser(result){
             $scope.main.currentUser = $window.currentUser = result.data.data;
             $scope.$broadcast('currentUserSet', result.data.data);
-        })
+        });
+        
+        /*---------- END Data Service Calls ----------*/
+        
+        
+        /*---------- Init ----------*/
         
         function init(){
             $state.go('NewsFeed');
-        }
+        };
         
         init();
+        
+        /*---------- END Init ----------*/
 }]);
