@@ -2,11 +2,24 @@ var app = angular.module('SocialMediaApp', ['ui.router', 'underscore', 'NewsFeed
 
 app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {
   
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/newsFeed");
   
   $stateProvider
+    .state('Login', {
+      url: "/login",
+      views:{
+        SideMenu: {
+            templateUrl: "app/sideMenu/partials/sideMenu.tpl.html",
+            controller: "SideMenuController"     
+        },
+        MainView: {
+            templateUrl: "app/newsFeed/partials/newsFeed.tpl.html",
+            controller: "NewsFeedController"     
+        }
+      }
+    })
     .state('NewsFeed', {
-      url: "/",
+      url: "/newsFeed",
       views:{
         SideMenu: {
             templateUrl: "app/sideMenu/partials/sideMenu.tpl.html",
@@ -36,6 +49,12 @@ app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {
 app.controller('MainController', ['$scope', '$rootScope', '$state', 
     function MainController($scope, $rootScope, $state){
     console.log('in the main controller');
+        
+        $scope.main = {};
+        
+        $scope.main.userLoggedIn = function(){
+            return window.userLoggedIn;
+        }
         
         function init(){
             $state.go('NewsFeed');

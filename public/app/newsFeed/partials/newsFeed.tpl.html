@@ -2,7 +2,8 @@
     <user-status-widget></user-status-widget>
     <hr/>
     <div class="news-feed-actions">
-        <button class="btn"><span><i class="glyphicon glyphicon-refresh"></i></span></button>
+        <button class="btn" ng-click="newsFeed.getNewsFeedItems()">
+            <span><i class="glyphicon glyphicon-refresh"></i></span></button>
     </div>
     <br>
     <div ng-repeat="item in newsFeed.items | orderBy:'createDT' track by $index">

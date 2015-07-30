@@ -22,13 +22,60 @@
         <script type="text/javascript" src="/app/sideMenu/controllers/sideMenu.ctrl.js"></script>
         <script type="text/javascript" src="/app/widgets/directives/userStatusWidget.dr.js"></script>
         <script type="text/javascript" src="/app/widgets/directives/controllers/userStatusWidget.ctrl.js"></script>
+        <script>
+            function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            if (response.status === 'connected') {
+                window.userLoggedIn = true;
+            } else if (response.status === 'not_authorized') {
+              document.getElementById('status').innerHTML = 'Please log ' +
+                'into this app.';
+                window.userLoggedIn = false;
+            } else {
+              document.getElementById('status').innerHTML = 'Please log ' +
+                'into Facebook.';
+                window.userLoggedIn = false;
+            }
+          }
+
+          // This function is called when someone finishes with the Login
+          // Button.  See the onlogin handler attached to it in the sample
+          // code below.
+          function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+              statusChangeCallback(response);
+            });
+          }
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '1012574255454195',
+              xfbml      : true,
+              version    : 'v2.4'
+            });
+          };
+
+          (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "//connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
     </head>
     <body ng-app="SocialMediaApp">
         <div class="container" ng-controller="MainController">
             <h1 class="text-center"><span><i class="glyphicon glyphicon-user"></i></span> The Social Network</h1>
             <hr/>
-            <div class="col-lg-2 col-sm-3" ui-view="SideMenu"></div>
-            <div class="col-lg-10 col-sm-9 main-view" ui-view="MainView"></div>
+            <div class="text-center">
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+                <div id="status"></div>
+            </div>
+            <div ng-if="main.userLoggedIn()">
+                <div class="col-lg-2 col-sm-3" ui-view="SideMenu"></div>
+                <div class="col-lg-10 col-sm-9 main-view" ui-view="MainView"></div>
+            </div>
         </div>
     </body>
 </html>
