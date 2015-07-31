@@ -38,3 +38,7 @@ Running Unit Tests
     - karma start karma.conf.js
     
 4. Tests will now run whenever a change is made to any code that is being watched with the karma config file
+
+Gruntfile
+
+1. The grunfile included provides configuration to enable safe annotation and minification of the javascript and angular modules
