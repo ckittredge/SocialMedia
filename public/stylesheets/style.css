@@ -30,3 +30,6 @@ a {
   padding: 10px;
   box-shadow: 3px 3px 3px #d3d3d3;
 }
+textarea {
+  padding: 5px;
+}
