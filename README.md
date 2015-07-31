@@ -2,6 +2,7 @@
 The Social Network
 
 Chris Kittredge
+
 Chris.Kittredge87@gmail.com
 
 Heroku Hosted:
