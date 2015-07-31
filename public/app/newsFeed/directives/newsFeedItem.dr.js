@@ -1,4 +1,4 @@
-angular.module('NewsFeed').directive('newsFeedItem', function newsFeedItem() {
+angular.module('NewsFeed').directive('newsFeedItem', [function newsFeedItem() {
   return {
       restrict: 'E',
       replace: 'true',
@@ -15,4 +15,4 @@ angular.module('NewsFeed').directive('newsFeedItem', function newsFeedItem() {
           });
       }
   };
-});
+}]);

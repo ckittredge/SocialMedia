@@ -1,4 +1,4 @@
-angular.module('AppUsers').directive('userInfoCard', function userInfoCard(){
+angular.module('AppUsers').directive('userInfoCard', [function userInfoCard(){
     return {
       restrict: 'E',
       replace: 'true',
@@ -15,4 +15,4 @@ angular.module('AppUsers').directive('userInfoCard', function userInfoCard(){
           });
       }
     }
-});
+}]);

@@ -3,37 +3,10 @@
         <!--  Stylesheets   -->
         <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-        <!--    Scripts    -->
-        <!--    Vendor    -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/javascripts/underscore-min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
-        <script type="text/javascript" src="/javascripts/angular-ui-router.min.js"></script>
-        <!--    Modules    -->
-        <script type="text/javascript" src="/app/util/underscore.mod.js"></script>
-        <script type="text/javascript" src="/app/newsFeed/newsFeed.mod.js"></script>
-        <script type="text/javascript" src="/app/sideMenu/sideMenu.mod.js"></script>
-        <script type="text/javascript" src="/app/widgets/widgets.mod.js"></script>
-        <script type="text/javascript" src="/app/users/appUsers.mod.js"></script>
-        <!--   Main     -->
-        <script type="text/javascript" src="/app/main.js"></script>
-        <!--    News Feed    -->
-        <script type="text/javascript" src="/app/newsFeed/types/newsFeedItemTypes.js"></script>
-        <script type="text/javascript" src="/app/newsFeed/dataServices/newsFeedDataService.js"></script>
-        <script type="text/javascript" src="/app/newsFeed/controllers/newsFeed.ctrl.js"></script>
-        <script type="text/javascript" src="/app/newsFeed/directives/newsFeedItem.dr.js"></script>
-        <script type="text/javascript" src="/app/newsFeed/directives/controllers/newsFeedItem.ctrl.js"></script>
-        <script type="text/javascript" src="/app/sideMenu/controllers/sideMenu.ctrl.js"></script>
-        <script type="text/javascript" src="/app/widgets/directives/userStatusWidget.dr.js"></script>
-        <script type="text/javascript" src="/app/widgets/directives/controllers/userStatusWidget.ctrl.js"></script>
-        <!--    Users     -->
-        <script type="text/javascript" src="/app/users/controllers/friendsList.ctrl.js"></script>
-        <script type="text/javascript" src="/app/users/dataServices/appUserDataService.js"></script>
-        <script type="text/javascript" src="/app/users/directives/userInfoCard.dr.js"></script>
-        <script type="text/javascript" src="/app/users/directives/controllers/userInfoCard.ctrl.js"></script>
+        <script src="/dist/vendor.min.js"></script>
+        <script src="/dist/app.min.js"></script>
     </head>
-    <body ng-app="SocialMediaApp">
+    <body ng-app="SocialMediaApp" ng-strict-di>
         <div class="container" ng-controller="MainController">
             <h4 class="text-right">
                 {{main.currentUser.firstName}} {{main.currentUser.lastName}}
