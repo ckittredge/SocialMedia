@@ -1,6 +1,6 @@
 angular.module('AppUsers').controller('FriendsListController', 
   ['$scope', '$window', 'appUserDataService',
-   function friendsListController($scope,$window, appUserDataService){
+   function friendsListController($scope, $window, appUserDataService){
        
        /*---------- Scope Setup ----------*/
        
@@ -12,9 +12,18 @@ angular.module('AppUsers').controller('FriendsListController',
        /*---------- Data Service Calls ----------*/
        
        $scope.friendsList.populateFriends = function(){
-            appUserDataService.getFriendsList($window.currentUser._id).then(function(result){
-                $scope.friendsList.items = result.data.data;
-            });
+           if($window.currentUser != null & $window.currentUser._id != null){
+                appUserDataService.getFriendsList($window.currentUser._id).then(function(result){
+                    if(result.success && result != null 
+                       && result.data != null && result.data.data != null){
+                        $scope.friendsList.items = result.data.data;
+                    } else{
+                        throw 'Error retrieving friends list'
+                    }
+                });
+           } else{
+               throw 'Current user is null'
+           }
        };
        
        /*---------- END Data Service Calls ----------*/

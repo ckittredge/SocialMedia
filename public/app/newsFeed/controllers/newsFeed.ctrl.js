@@ -1,7 +1,6 @@
 angular.module('NewsFeed').controller('NewsFeedController', 
     ['$scope', 'newsFeedDataService', 'NEWS_FEED_TYPES',
     function newsFeedController($scope, newsFeedDataService, NEWS_FEED_TYPES){
-        console.log('In the news feed controller');
         
         /*---------- Scope Setup ----------*/
         
@@ -16,8 +15,10 @@ angular.module('NewsFeed').controller('NewsFeedController',
 
         $scope.newsFeed.getNewsFeedItems = function(){
             newsFeedDataService.getNewsFeedItems().then(function(result){
-                if(result.success){
+                if(result.success && result != null && result.data != null){
                     $scope.newsFeed.items.push.apply($scope.newsFeed.items, result.data.data);
+                } else {
+                    throw 'Returned null items'
                 }
             });
         };

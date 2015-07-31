@@ -12,7 +12,7 @@ describe('Unit: SideMenuController', function NewsFeedControllerTests() {
     });
   }));
 
-  it('should create $scope.greeting when calling sayHello', 
+  it('should set news feed item to selected when $stateChangeSuccess is broadcast with name of NewsFeed', 
     function () {
       scope.sideMenu.items = [
                 {

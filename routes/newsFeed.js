@@ -10,6 +10,7 @@ router.use(function(req, res, next) {
 });
 
 /* GET news feed items. */
+
 router.get('/items/:user_id', function(req, res, next) {
     MongoClient.connect(url, function (err, db) {
       if (err) {
@@ -29,6 +30,7 @@ router.get('/items/:user_id', function(req, res, next) {
     });
 });
 
+/* Post a news feed item. */
 router.post('/item', function(req, res, next) {
     console.log(req.body);
     MongoClient.connect(url, function (err, db) {

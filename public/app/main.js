@@ -41,7 +41,6 @@ app.config(function SocialMediaAppConfig($stateProvider, $urlRouterProvider) {
 
 app.controller('MainController', ['$scope', '$window', '$state', 'appUserDataService', 
     function MainController($scope, $window, $state, appUserDataService){
-    console.log('in the main controller');
         
         /*---------- Scope Setup ----------*/
         
@@ -53,8 +52,13 @@ app.controller('MainController', ['$scope', '$window', '$state', 'appUserDataSer
         /*---------- Data Service Calls ----------*/
         
         appUserDataService.getCurrentUser().then(function getCurrentUser(result){
-            $scope.main.currentUser = $window.currentUser = result.data.data;
-            $scope.$broadcast('currentUserSet', result.data.data);
+            if(result.success && result != null && result.data != null 
+               && result.data.data !=null){
+                $scope.main.currentUser = $window.currentUser = result.data.data;
+                $scope.$broadcast('currentUserSet', result.data.data);
+            } else{
+                throw 'Current user is null'
+            }
         });
         
         /*---------- END Data Service Calls ----------*/

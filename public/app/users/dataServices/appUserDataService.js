@@ -9,16 +9,16 @@ angular.module('AppUsers').service('appUserDataService',
         var success = function success(response){
             return {
                 success: true,
-                response: response
+                data: response.data
             };
         }
         var error = function error(response){
             return {
                 success: false,
-                response: response
+                data: response.data
             }
         }
-        return $http(req, success, error);
+        return $http(req).then(success, error);
       }
       
       this.getFriendsList = function(user_id){
@@ -29,16 +29,16 @@ angular.module('AppUsers').service('appUserDataService',
         var success = function success(response){
             return {
                 success: true,
-                response: response
+                data: response.data
             };
         }
         var error = function error(response){
             return {
                 success: false,
-                response: response
+                data: response.data
             }
         }
-        return $http(req, success, error);
+        return $http(req).then(success, error);
       }
       
 }]);

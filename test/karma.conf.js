@@ -27,6 +27,8 @@ module.exports = function(config) {
         '../public/app/sideMenu/**/*.js',
         '../public/app/widgets/*.js',
         '../public/app/widgets/**/*.js',
+        '../public/app/users/*.js',
+        '../public/app/users/**/*.js',
         'specs/**/*.js'
     ],
 

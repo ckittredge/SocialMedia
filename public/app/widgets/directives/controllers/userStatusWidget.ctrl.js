@@ -1,7 +1,6 @@
 angular.module('Widgets').controller('UserStatusWidgetController',
- ['$scope', '$rootScope', '$window', 'newsFeedDataService', 'NEWS_FEED_TYPES',
-  function UserStatusWidgetController($scope, $rootScope, $window, newsFeedDataService, NEWS_FEED_TYPES){
-    console.log('In the user status widget controller');
+ ['$scope', '$window', 'newsFeedDataService', 'NEWS_FEED_TYPES',
+  function UserStatusWidgetController($scope, $window, newsFeedDataService, NEWS_FEED_TYPES){
       
       /*---------- Scope Setup ----------*/
       
@@ -38,6 +37,8 @@ angular.module('Widgets').controller('UserStatusWidgetController',
               if(response.success){
                 $scope.userStatusWidget.clear();
                 $scope.$broadcast('newStatusUpdatePosted');
+              } else{
+                  throw 'Error posting status'
               }
           });
       }
