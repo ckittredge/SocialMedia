@@ -16,7 +16,10 @@ angular.module('NewsFeed').controller('NewsFeedController',
         $scope.newsFeed.getNewsFeedItems = function(){
             newsFeedDataService.getNewsFeedItems().then(function(result){
                 if(result.success && result != null && result.data != null){
-                    $scope.newsFeed.items.push.apply($scope.newsFeed.items, result.data.data);
+                    _.each(result.data.data, function checkForDuplicates(item){
+                        var existing = _.findWhere($scope.newsFeed.items, { _id: item._id });
+                        if(existing == null) $scope.newsFeed.items.push(item);
+                    });
                 } else {
                     throw 'Returned null items'
                 }
