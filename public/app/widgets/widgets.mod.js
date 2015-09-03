@@ -1,1 +1,3 @@
-angular.module('Widgets', ['underscore', 'NewsFeed']);
+(function(){
+    angular.module('Widgets', ['underscore', 'NewsFeed']);
+}());
