@@ -1,16 +1,22 @@
 <div class="user-status-widget">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-sm-12">
             <h4>What's on your mind?</h4>
             <form name="userStatusWidget.form">
                 <div class="hidden" ng-init="userStatusWidget.setForm(userStatusWidgetForm)"></div>
                 <textarea ng-required="userStatusWidget.statusText == null || userStatusWidget.statusText.length === 0"
                           ng-model="userStatusWidget.statusText"
-                          ng-model-options="{dethrottle: 200}"
+                          ng-model-options="{debounce: 300}"
                           ng-change="userStatusWidget.checkStatusType()"
                           placeholder="Get it all out!">
                 </textarea>
-                <div ng-if="userStatusWidget.containsImageLink">Contains Image</div>
+                <div class="clearfix"
+                     ng-if="userStatusWidget.statusType === userStatusWidget.newsFeedTypes.IMAGE">
+                    <br/>
+                    <div class="col-lg-offset-5 col-lg-3 col-sm-offset-4 col-sm-4 col-xs-offset-3 col-xs-6"> 
+                        <img width="150" height="150" ng-src="{{userStatusWidget.contentUrl}}"></img>
+                    </div>
+                </div>
                 <div class="clearfix"></div>
                 <br>
                 <div class="btn-toolbar pull-right">

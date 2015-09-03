@@ -6,8 +6,11 @@
           /*---------- Scope Setup ----------*/
 
           $scope.userStatusWidget = {
-                statusText: '',
-                containsImageLink: false
+              containsImageLink: false,
+              contentUrl: null,
+              newsFeedTypes: NEWS_FEED_TYPES,
+              statusText: '',
+              statusType: NEWS_FEED_TYPES.TEXT
           };
 
           /*---------- END Scope Setup ----------*/
@@ -16,11 +19,19 @@
           /*---------- Helper Functions ----------*/
           
           $scope.userStatusWidget.checkStatusType = function checkStatusType(){
-//              if (/(jpg|gif|png)$/.test($scope.userStatusWidget.statusText)){
-//                $scope.userStatusWidget.containsImageLink = true;
-//              } else{
-//                $scope.userStatusWidget.containsImageLink = false;
-//              }
+              if($scope.userStatusWidget.statusText == null || $scope.userStatusWidget.statusText.length === 0) return;
+              var statusTextSplit = $scope.userStatusWidget.statusText.split(/\s/);
+              var contentUrl = _.find(statusTextSplit, function(x){
+                  return /(jpg|gif|png)/.test(x.trim());
+              });
+              if (contentUrl != null){
+                  $scope.userStatusWidget.statusType = NEWS_FEED_TYPES.IMAGE; 
+                  var sanitizedContentUrl = contentUrl.split(/(jpg|gif|png)/);
+                  $scope.userStatusWidget.contentUrl = sanitizedContentUrl[0] + sanitizedContentUrl[1];
+              } else{
+                  $scope.userStatusWidget.statusType = NEWS_FEED_TYPES.TEXT;
+                  $scope.userStatusWidget.contentUrl = null;
+              }
           };
           
           /*---------- END Helper Functions ----------*/
@@ -29,16 +40,22 @@
           /*---------- Button Actions ----------*/
 
           $scope.userStatusWidget.clear = function clearStatus(){
-                $scope.userStatusWidget.statusText = '';
+              $scope.userStatusWidget.statusText = '';
+              $scope.userStatusWidget.contentUrl = null;
+              $scope.userStatusWidget.statusType = NEWS_FEED_TYPES.TEXT;
           };
 
           $scope.userStatusWidget.submit = function submitStatus(){
+              var statusText = $scope.userStatusWidget.contentUrl != null ? 
+                  $scope.userStatusWidget.statusText.replace($scope.userStatusWidget.contentUrl, "") : 
+                  $scope.userStatusWidget.statusText;
               var status = {
-                    type: NEWS_FEED_TYPES.TEXT,
+                    type: $scope.userStatusWidget.statusType,
                     user: $window.currentUser,
-                    text: $scope.userStatusWidget.statusText,
+                    text: statusText,
+                    contentUrl: $scope.userStatusWidget.contentUrl,
                     createDT: new Date()
-              }
+              };
               newsFeedDataService.postStatusUpdate(status).then(function(response){
                   if(response.success){
                     $scope.userStatusWidget.clear();

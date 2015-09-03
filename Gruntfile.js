@@ -2,7 +2,8 @@ module.exports = function (grunt) {
     grunt.initConfig({  
         ngAnnotate: {  
             options: {
-                singleQuotes: true
+                singleQuotes: true,
+                compress: true
            },
             vendor: {
                 files: {
