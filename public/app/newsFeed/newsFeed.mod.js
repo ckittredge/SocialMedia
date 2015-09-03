@@ -1,3 +1,1 @@
-(function(){
-    angular.module('NewsFeed', ['underscore']);
-}());
+angular.module('NewsFeed', ['underscore']);

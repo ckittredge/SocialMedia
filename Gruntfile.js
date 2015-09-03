@@ -2,11 +2,13 @@ module.exports = function (grunt) {
     grunt.initConfig({  
         ngAnnotate: {  
             options: {
-                singleQuotes: true
+                singleQuotes: true,
+                compress: true
            },
             vendor: {
                 files: {
                    'public/annotated/annotated_vendor.js': [
+                    //Vendor
                     'public/javascripts/jquery.js',   
                     'public/bootstrap/dist/js/bootstrap.js',    
                     'public/javascripts/angular/angular.js',
@@ -18,6 +20,7 @@ module.exports = function (grunt) {
             app: {
                 files: {
                    'public/annotated/annotated_app.js': [
+                    //Modules
                     'public/app/util/underscore.mod.js',
                     'public/app/newsFeed/newsFeed.mod.js',
                     'public/app/sideMenu/sideMenu.mod.js',
@@ -39,11 +42,7 @@ module.exports = function (grunt) {
             vendor: {
                 files: {
                    'public/dist/vendor.min.js': [
-                        'public/javascripts/jquery.js',   
-                        'public/bootstrap/dist/js/bootstrap.js',    
-                        'public/javascripts/angular/angular.js',
-                        'public/javascripts/underscore.js',
-                        'public/javascripts/angular-ui-router.min.js'
+                       'public/annotated/annotated_vendor.js',
                    ]
                 }
             }, 

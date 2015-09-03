@@ -1,3 +1,1 @@
-(function(){
-    angular.module('SideMenu', ['underscore']);
-}());
+angular.module('SideMenu', ['underscore']);
