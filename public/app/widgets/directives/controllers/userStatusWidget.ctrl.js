@@ -6,19 +6,24 @@
           /*---------- Scope Setup ----------*/
 
           $scope.userStatusWidget = {
-                statusText: ''
+                statusText: '',
+                containsImageLink: false
           };
 
           /*---------- END Scope Setup ----------*/
-
-
-          /*---------- Form Setup ----------*/
-
-          $scope.userStatusWidget.setForm = function(form){
-                $scope.userStatusWidget.form = form;
+          
+          
+          /*---------- Helper Functions ----------*/
+          
+          $scope.userStatusWidget.checkStatusType = function checkStatusType(){
+//              if (/(jpg|gif|png)$/.test($scope.userStatusWidget.statusText)){
+//                $scope.userStatusWidget.containsImageLink = true;
+//              } else{
+//                $scope.userStatusWidget.containsImageLink = false;
+//              }
           };
-
-          /*---------- END Form Setup ----------*/
+          
+          /*---------- END Helper Functions ----------*/
 
 
           /*---------- Button Actions ----------*/

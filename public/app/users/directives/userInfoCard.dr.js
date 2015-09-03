@@ -1,5 +1,5 @@
 (function(){
-    angular.module('AppUsers').directive('userInfoCard', [function userInfoCard(){
+    angular.module('AppUsers').directive('userInfoCard', [function UserInfoCard(){
         return {
           restrict: 'E',
           replace: 'true',

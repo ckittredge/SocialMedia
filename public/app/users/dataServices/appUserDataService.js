@@ -21,7 +21,7 @@
                 }
             }
             return $http(req).then(success, error);
-          }
+          };
 
           this.getFriendsList = function(user_id){
             var req = {
@@ -41,7 +41,7 @@
                 }
             }
             return $http(req).then(success, error);
-          }
+          };
 
     }]);
 }());
