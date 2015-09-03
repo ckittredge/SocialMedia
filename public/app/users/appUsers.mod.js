@@ -1,1 +1,3 @@
-angular.module('AppUsers', []);
+(function(){
+    angular.module('AppUsers', []);
+}());
